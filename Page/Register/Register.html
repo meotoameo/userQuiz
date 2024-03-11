@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <link rel="stylesheet" href="Register.css">
+    <link rel="stylesheet" href="../../Assets/gloybal.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="bg-img--left">
+        <img class="img-left" src="../../Assets/img/bg_left.png" alt="">
+    </div>
+    <div class="register-container">
+        <div class="logo-ptit">
+            <img src="../../Assets/img/logo_ptit.png" alt="">
+        </div>
+        <h2>Đăng ký</h2>
+        <form id="register-form" onsubmit="return register()">
+            <div class="form-group">
+                <label for="username">Tài khoản:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mật khẩu:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Xác nhận mật khẩu:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+            <div class="transfer">
+                <a href="../Login/Login.html">Đăng nhập</a>
+            </div>
+            <button type="submit">Đăng ký</button>
+        </form>
+    </div>
+    <div class="bg-img--right">
+        <img class="img-right" src="../../Assets/img/bg_right.png" alt="">
+    </div>
+    <script>
+        // Hàm để thực hiện đăng ký
+        function register() {
+            var username = document.getElementById("username").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var confirm_password = document.getElementById("confirm_password").value;
+
+            // Kiểm tra xem độ dài của tài khoản
+            if (username.length < 8) {
+                alert("Tài khoản cần ít nhất 8 ký tự.");
+                return false; // Ngăn chặn form được gửi đi
+            }
+
+            // Kiểm tra xem mật khẩu đã được xác nhận chưa
+            if (password !== confirm_password) {
+                alert("Mật khẩu và xác nhận mật khẩu không khớp.");
+                return false; // Ngăn chặn form được gửi đi
+            }
+
+            // Kiểm tra độ dài của mật khẩu
+            if (password.length < 8) {
+                alert("Mật khẩu cần ít nhất 8 ký tự.");
+                return false; // Ngăn chặn form được gửi đi
+            }
+
+            // Lấy mảng accounts từ local storage (nếu có)
+            var accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+
+            // Kiểm tra xem tài khoản đã tồn tại chưa
+            var existingAccount = accounts.find(function (account) {
+                return account.username === username;
+            });
+
+            // Nếu tài khoản đã tồn tại, thông báo và không thực hiện đăng ký
+            if (existingAccount) {
+                alert("Tài khoản đã tồn tại. Vui lòng chọn tên khác.");
+                return false; // Ngăn chặn form được gửi đi
+            }
+
+            // Nếu tài khoản chưa tồn tại và mật khẩu đã được xác nhận và đủ dài, thêm vào mảng tài khoản
+            accounts.push({ username: username, email: email, password: password });
+
+            // Lưu mảng accounts vào local storage
+            localStorage.setItem('accounts', JSON.stringify(accounts));
+
+            // Thông báo đăng ký thành công
+            alert("Đăng ký thành công.");
+
+            // Cho phép form được gửi đi
+            return true;
+        }
+    </script>
+</body>
+
+</html>
