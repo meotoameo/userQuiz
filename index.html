@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
-    <link rel="stylesheet" href="Login.css">
+    <link rel="stylesheet" href="./Page/Login/Login.css">
     <link rel="stylesheet" href="../../Assets/gloybal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +43,7 @@
                         <label class="cb__label" for="login__checkbox">Ghi nhớ</label>
                     </div>
 
-                    <a class="login__main__forgetpass" href="../Register/Register.html">Đăng ký mới</a>
+                    <a class="login__main__forgetpass" href="./Page/Register/Register.html">Đăng ký mới</a>
 
                 </div>
                 <div class="transfer">
@@ -71,7 +71,7 @@
                 return account.username === username && account.password === password;
             });
             if (username === 'admin' && password === 'admin') {
-                return window.location.replace('../Home/home.html');
+                return window.location.replace('./Page/Home/home.html');
             }
             // Nếu không tìm thấy tài khoản, hiển thị thông báo lỗi và ngăn chặn form được gửi đi
             if (!foundAccount) {
