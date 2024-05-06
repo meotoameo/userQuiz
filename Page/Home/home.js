@@ -52,7 +52,7 @@ function renderExamData(examData) {
             <div class="time"><i class="fa-regular fa-clock"></i><span>${time}'</span></div>
           </div>
           <div class="footer-item">
-            <button class="start-btn"><a href="../../Exam/Exam.html">Vào thi</a></button>
+            <button class="start-btn"><a href="../Exam/Exam.html">Vào thi</a></button>
           </div>`;
 
         // Áp dụng animation cho mỗi main-item
